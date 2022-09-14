@@ -1,7 +1,6 @@
 #ifndef  PRODUTOS_H
 #define  PRODUTOS_H
 
-    #include <stdio.h>
 	#include "structs.h"
 	
 	void incluir_produtos(PPProdutos produtos, int tamanho){

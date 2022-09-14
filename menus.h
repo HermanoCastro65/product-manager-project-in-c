@@ -1,7 +1,6 @@
 #ifndef  MENUS_H
 #define  MENUS_H
 
-    #include <stdio.h>
     #include "produtos.h"
     #include "pedidos.h"
 	

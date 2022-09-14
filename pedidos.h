@@ -1,8 +1,6 @@
 #ifndef  PEDIDOS_H
 #define  PEDIDOS_H
 
-    #include <stdio.h>
-	
 	void adicionar_pedidos(){
 		printf("\n adicionar");
 	}

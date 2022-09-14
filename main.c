@@ -4,6 +4,7 @@
 
 #include "menus.h"
 #include "structs.h"
+#include "arquivo.h"
 
 int main(int argc, char *argv[]) {
 	setlocale(LC_ALL,"Portuguese");
@@ -16,6 +17,9 @@ int main(int argc, char *argv[]) {
          printf("\n\nMemoria insuficiente\n\n");
          exit(1);           
     }  
+    
+    ler_arquivo(produtos, &tamanho);
+    getchar();
     
 	do{		
 		system("cls");
