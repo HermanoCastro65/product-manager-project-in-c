@@ -3,23 +3,25 @@
 
 #include "structs.h"
 
+// FunÁ„o incluir produtos
 void incluir_produtos(PPProdutos produtos, int tamanho)
 {
 	system("cls");
 	printf("\nINCLUIR PRODUTOS: \n");
 
+	// Aloca o espaÁo para incluir um produto
 	aloca_produto(produtos, tamanho);
 
 	if (produtos[tamanho])
 	{
 		produtos[tamanho]->codigo = 1000 + rand() % 9000;
-		printf("\nInforme a descriÔøΩÔøΩo do Produto: ");
+		printf("\nInforme a descriÁ„o do Produto: ");
 		scanf(" %[^\n]", produtos[tamanho]->descricao);
 		printf("Informe a quantidade em estoque do Produto: ");
 		scanf("%d", &produtos[tamanho]->qtd_estoque);
-		printf("Informe o preÔøΩo do Produto: ");
+		printf("Informe o preÁo do Produto: ");
 		scanf("%f", &produtos[tamanho]->preco);
-		printf("\nCONCLU√çDO \n");
+		printf("\nCONCLUÕDO \n");
 	}
 }
 
@@ -27,31 +29,37 @@ void alterar_produtos()
 {
 	printf("\n alterar");
 }
+
 void excluir_produtos()
 {
 	printf("\n excluir");
 }
+
+// FunÁ„o consultar produtos
 void consultar_produtos(PPProdutos produtos, int codigo, int tamanho)
 {
 	system("cls");
 	printf("\nCONSULTAR PRODUTOS: \n");
 
-	int i = 0;
-	for (i = 0; i < tamanho; i++)
+	// Busca o produto desejado pelo cÛdigo
+	PProdutos produto = get_produto(produtos, codigo, tamanho);
+
+	if (!produto)
 	{
-		if (codigo == produtos[i]->codigo)
-		{
-			printf("\n C√≥digo: %d", produtos[i]->codigo);
-			printf("\n Descri√ß√£o: %s", produtos[i]->descricao);
-			printf("\n Pre√ßo: R$ %.2f", produtos[i]->preco);
-			printf("\n Quantidade em Estoque: %d\n", produtos[i]->qtd_estoque);
-			printf("\nCONCLU√çDO \n");
-			return;
-		}
+		printf("\nC”DIGO INV¡LIDO! \n");
+		return;
 	}
-	printf("\nC√ìDIGO INV√ÅLIDO! \n");
+		
+	printf("\n CÛdigo: %d", produto->codigo);
+	printf("\n DescriÁ„o: %s", produto->descricao);
+	printf("\n PreÁo: R$ %.2f", produto->preco);
+	printf("\n Quantidade em Estoque: %d\n", produto->qtd_estoque);
+	printf("\nCONCLUÕDO \n");
+		
+	free(produto);
 }
 
+// FunÁ„o listar produtos
 void listar_produtos(PPProdutos produtos, int tamanho)
 {
 	system("cls");
@@ -60,10 +68,10 @@ void listar_produtos(PPProdutos produtos, int tamanho)
 	int i;
 	for (i = 0; i < tamanho; i++)
 	{
-		printf("\n C√≥digo: %d", produtos[i]->codigo);
-		printf("\n Descri√ß√£o: %s", produtos[i]->descricao);
+		printf("\n CÛdigo: %d", produtos[i]->codigo);
+		printf("\n DescriÁ„o: %s", produtos[i]->descricao);
 	}
-	printf("\nCONCLU√çDO \n");
+	printf("\nCONCLUÕDO \n");
 }
 
 #endif

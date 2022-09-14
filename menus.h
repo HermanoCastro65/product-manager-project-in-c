@@ -8,6 +8,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 {
 	int opcao, sair = 0;
 
+	// Menu de produtos
 	do
 	{
 		system("cls");
@@ -18,12 +19,13 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 		printf("\n(4) Consultar Produtos");
 		printf("\n(5) Listar Produtos");
 		printf("\n(6) Sair");
-		printf("\n\nDigite uma op√ß√£o: ");
+		printf("\n\nDigite uma opÁ„o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)
 		{
 		case 1:
+			// Chama a funÁ„o incluir produtos
 			if (produtos)
 			{
 				incluir_produtos(produtos, *tamanho);
@@ -40,12 +42,13 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 4:
+			// Chama as funÁıes de listar e consultar produtos
 			if (produtos)
 			{
 				listar_produtos(produtos, *tamanho);
 
 				int codigo;
-				printf("\nDigite o c√≥digo do produto que deseja consultar: ");
+				printf("\nDigite o cÛdigo do produto que deseja consultar: ");
 				scanf("%d", &codigo);
 
 				consultar_produtos(produtos, codigo, *tamanho);
@@ -53,6 +56,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 5:
+			// Chama a funÁ„o listar produtos
 			if (produtos)
 				listar_produtos(produtos, *tamanho);
 			getch();
@@ -62,17 +66,19 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			sair = 1;
 			break;
 		default:
-			printf("\nOP√á√ÉO INV√ÅLIDA! \n");
+			printf("\nOP«√O INV¡LIDA! \n");
 			getch();
 			sair = 0;
 		}
 	} while (!sair);
 }
 
+
 void menu_pedidos()
 {
 	int opcao, sair = 0;
 
+	// Menu de pedidos
 	do
 	{
 		system("cls");
@@ -82,7 +88,7 @@ void menu_pedidos()
 		printf("\n(4) Alterar Pedidos");
 		printf("\n(5) Finalizar Pedidos");
 		printf("\n(6) Sair");
-		printf("\n\nDigite uma op√ß√£o: ");
+		printf("\n\nDigite uma opÁ„o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)
@@ -113,7 +119,7 @@ void menu_pedidos()
 			sair = 1;
 			break;
 		default:
-			printf("\nOP√á√ÉO INV√ÅLIDA! \n");
+			printf("\nOP«√O INV¡LIDA! \n");
 			getch();
 			sair = 0;
 		}

@@ -31,4 +31,16 @@ void aloca_produto(PPProdutos produtos, int tamanho)
 	}
 }
 
+// Encontra produto pelo código
+PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
+{
+	int i = 0;
+	for (i = 0; i < tamanho; i++)
+	{
+		if (codigo == produtos[i]->codigo)
+			return produtos[i];	
+	}
+	return NULL;
+}
+
 #endif
