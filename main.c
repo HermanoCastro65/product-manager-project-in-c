@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 		printf("\n(1) Menu Produtos");
 		printf("\n(2) Menu Pedidos");
 		printf("\n(3) Sair");
-		printf("\n\nDigite uma opÁ„o: ");
+		printf("\n\nDigite uma op√ß√£o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 			sair = 1;
 			break;
 		default:
-			printf("\nOP«√O INV¡LIDA! \n");
+			printf("\nOP√á√ÉO INV√ÅLIDA! \n");
 			getch();
 			sair = 0;
 		}

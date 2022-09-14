@@ -14,7 +14,7 @@ PPProdutos aloca_vetor()
 	PPProdutos produtos = (PPProdutos)malloc(sizeof(PProdutos));
 	if (produtos == NULL)
 	{
-		printf("\n\nMemoria insuficiente\n\n");
+		printf("\n\nMemória insuficiente\n\n");
 		exit(1);
 	}
 	return produtos;
@@ -26,7 +26,7 @@ void aloca_produto(PPProdutos produtos, int tamanho)
 	produtos[tamanho] = (PProdutos)malloc(sizeof(Produtos));
 	if (produtos[tamanho] == NULL)
 	{
-		printf("\n\nMemoria insuficiente\n\n");
+		printf("\n\nMemória insuficiente\n\n");
 		exit(1);
 	}
 }
