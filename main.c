@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 	setlocale(LC_ALL, "Portuguese");
 
 	int opcao, sair = 0, tamanho = 0;
-
 	PPProdutos produtos = aloca_vetor();
 
 	ler_arquivo(produtos, &tamanho);
@@ -23,7 +22,7 @@ int main(int argc, char *argv[])
 		printf("\n(1) Menu Produtos");
 		printf("\n(2) Menu Pedidos");
 		printf("\n(3) Sair");
-		printf("\n\nDigite uma opcao: ");
+		printf("\n\nDigite uma op��o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)

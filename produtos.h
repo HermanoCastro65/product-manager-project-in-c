@@ -13,13 +13,13 @@ void incluir_produtos(PPProdutos produtos, int tamanho)
 	if (produtos[tamanho])
 	{
 		produtos[tamanho]->codigo = 1000 + rand() % 9000;
-		printf("\nInforme a descriï¿½ï¿½o do Produto: ");
+		printf("\nInforme a descrição do Produto: ");
 		scanf(" %[^\n]", produtos[tamanho]->descricao);
 		printf("Informe a quantidade em estoque do Produto: ");
 		scanf("%d", &produtos[tamanho]->qtd_estoque);
-		printf("Informe o preï¿½o do Produto: ");
+		printf("Informe o preço do Produto: ");
 		scanf("%f", &produtos[tamanho]->preco);
-		printf("\nCONCLUï¿½DO \n");
+		printf("\nCONCLUÍDO \n");
 	}
 }
 
@@ -44,12 +44,12 @@ void listar_produtos(PPProdutos produtos, int tamanho)
 	int i;
 	for (i = 0; i < tamanho; i++)
 	{
-		printf("\n Cï¿½digo: %d", produtos[i]->codigo);
-		printf("\n Descriï¿½ï¿½o: %s", produtos[i]->descricao);
-		printf("\n Preï¿½o: R$ %.2f", produtos[i]->preco);
+		printf("\n Código: %d", produtos[i]->codigo);
+		printf("\n Descrição: %s", produtos[i]->descricao);
+		printf("\n Preço: R$ %.2f", produtos[i]->preco);
 		printf("\n Quantidade em Estoque: %d\n", produtos[i]->qtd_estoque);
 	}
-	printf("\nCONCLUï¿½DO \n");
+	printf("\nCONCLUíDO \n");
 }
 
 #endif
