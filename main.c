@@ -1,22 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-
+#include <string.h>
+	
 #include "menus.h"
-#include "structs.h"
 #include "arquivo.h"
-
+    
 int main(int argc, char *argv[]) {
 	setlocale(LC_ALL,"Portuguese");
 	
 	int opcao, sair = 0, tamanho = 0;
 	
-	//Aloca o vetor de produtos
-    PPProdutos produtos = (PPProdutos) malloc(sizeof(PProdutos));   
-    if (produtos == NULL){
-         printf("\n\nMemoria insuficiente\n\n");
-         exit(1);           
-    }  
+	PPProdutos produtos = aloca_vetor();
     
     ler_arquivo(produtos, &tamanho);
     getchar();
