@@ -1,9 +1,9 @@
 #ifndef  MENUS_H
 #define  MENUS_H
-
-    #include "produtos.h"
-    #include "pedidos.h"
 	
+    #include "produtos.h"
+	#include "pedidos.h"
+
 	void menu_produtos(PPProdutos produtos, int *tamanho){
 		int opcao,	sair = 0;
 		            
