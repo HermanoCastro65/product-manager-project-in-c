@@ -7,14 +7,10 @@
 		system("cls");
 		printf("\nINCLUIR PRODUTOS: \n");
 		
-       	produtos[tamanho] = (PProdutos) malloc(sizeof(Produtos));   
-        if (produtos[tamanho] == NULL){
-           printf("\n\nMemoria insuficiente\n\n");
-           exit(1);           
-        }
+       	aloca_produto(produtos, tamanho);
       
       	if (produtos[tamanho]){
-	      	produtos[tamanho]->codigo = tamanho;
+	      	produtos[tamanho]->codigo = 1000 + rand() % 9000;
 	        printf("\nInforme a descrição do Produto: "); 
 	        scanf(" %[^\n]",produtos[tamanho]->descricao);
 			printf("Informe a quantidade em estoque do Produto: "); 
