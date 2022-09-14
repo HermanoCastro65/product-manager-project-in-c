@@ -18,7 +18,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 		printf("\n(4) Consultar Produtos");
 		printf("\n(5) Listar Produtos");
 		printf("\n(6) Sair");
-		printf("\n\nDigite uma opção: ");
+		printf("\n\nDigite uma opï¿½ï¿½o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)
@@ -40,7 +40,16 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 4:
-			consultar_produtos();
+			if (produtos)
+			{
+				listar_produtos(produtos, *tamanho);
+
+				int codigo;
+				printf("\nDigite o cï¿½digo do produto que deseja consultar: ");
+				scanf("%d", &codigo);
+
+				consultar_produtos(produtos, codigo, *tamanho);
+			}
 			getch();
 			break;
 		case 5:
@@ -53,7 +62,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			sair = 1;
 			break;
 		default:
-			printf("\nOPÇÃO INVÁLIDA! \n");
+			printf("\nOPï¿½ï¿½O INVï¿½LIDA! \n");
 			getch();
 			sair = 0;
 		}
@@ -73,7 +82,7 @@ void menu_pedidos()
 		printf("\n(4) Alterar Pedidos");
 		printf("\n(5) Finalizar Pedidos");
 		printf("\n(6) Sair");
-		printf("\n\nDigite uma opção: ");
+		printf("\n\nDigite uma opï¿½ï¿½o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)
@@ -104,7 +113,7 @@ void menu_pedidos()
 			sair = 1;
 			break;
 		default:
-			printf("\nOPÇÃO INVÁLIDA! \n");
+			printf("\nOPï¿½ï¿½O INVï¿½LIDA! \n");
 			getch();
 			sair = 0;
 		}
