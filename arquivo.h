@@ -10,7 +10,7 @@ void ler_arquivo(PPProdutos produtos, int *tamanho)
 
 	if (file == NULL)
 	{
-		printf("\nNï¿½o foi possï¿½vel ler o arquivo.\n");
+		printf("\nNão foi possível ler o arquivo.\n");
 		getchar();
 		exit(1);
 	}
