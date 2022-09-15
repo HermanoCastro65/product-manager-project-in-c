@@ -1,9 +1,24 @@
 #ifndef PEDIDOS_H
 #define PEDIDOS_H
 
-void adicionar_pedidos(PPProdutos estoque, PPProdutos pedidos, int tamanho)
+void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam)
 {
-	printf("\n adicionar");
+	printf("\nADICIONAR PEDIDOS: \n");
+	
+	int qtd;
+	printf("\n Informe a quantidade que deseja adicionar: ");
+	scanf("%d", qtd);
+	if(qtd <= produto->qtd_estoque)
+	{
+		pedidos[tam] = produto;
+		pedidos[tam]->qtd_estoque = qtd;
+		produto->qtd_estoque = produto->qtd_estoque - qtd;
+	} else
+	{
+		printf("\nQUANTIDADE FORA DE ESTOQUE \n");
+	}
+	
+	printf("\nCONCLUÍDO \n");
 }
 void consultar_pedidos()
 {

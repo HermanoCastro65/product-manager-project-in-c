@@ -109,7 +109,6 @@ void excluir_produtos(PPProdutos produtos, int posicao, int tamanho)
 	{
 		produtos[i] = produtos[i + 1];
 	}
-	
 	produtos[tamanho] = NULL;
 	free(produtos[tamanho]);
 	

@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 				break;
 			case 2:
 				// Chama o menu de pedidos
-				menu_pedidos(produtos, &tam);
+				menu_pedidos(produtos, &tamanho, &tam);
 				getch();
 				break;
 			case 3:

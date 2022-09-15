@@ -84,6 +84,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 		case 5:
 			// Chama a função listar produtos
 			listar_produtos(produtos, *tamanho);
+			
 			getch();
 			break;
 		case 6:
@@ -99,62 +100,76 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 }
 
 
-void menu_pedidos(PPProdutos estoque, int *tamanho)
+void menu_pedidos(PPProdutos produtos, int *tamanho, int *tam)
 {
-	int opcao, sair = 0;
+	int opcao, sair = 0, codigo;
 	PPProdutos pedidos = aloca_vetor();
-	// Menu de pedidos
-	do
-	{
-		system("cls");
-		printf("\n(1) Adicionar Pedidos");
-		printf("\n(2) Consulta Pedidos");
-		printf("\n(3) Excluir Pedidos");
-		printf("\n(4) Alterar Pedidos");
-		printf("\n(5) Finalizar Pedidos");
-		printf("\n(6) Sair");
-		printf("\n\nDigite uma opção: ");
-		scanf("%d", &opcao);
+	PProdutos produto;
 
-		switch (opcao)
+	if(pedidos)
+	{
+		// Menu de pedidos
+		do
 		{
-		case 1:
-			// Chama a função adicionar pedidos
-			if (pedidos && estoque)
+			system("cls");
+			printf("\n(1) Adicionar Pedidos");
+			printf("\n(2) Consulta Pedidos");
+			printf("\n(3) Excluir Pedidos");
+			printf("\n(4) Alterar Pedidos");
+			printf("\n(5) Finalizar Pedidos");
+			printf("\n(6) Sair");
+			printf("\n\nDigite uma opção: ");
+			scanf("%d", &opcao);
+	
+			switch (opcao)
 			{
-				adicionar_pedidos(estoque, pedidos, *tamanho);
-				*tamanho = *tamanho + 1;
+			case 1:
+				// Chama as funções de listar produtos, consultar produtos, adicionar pedidos e alterar produtos
+				listar_produtos(produtos, *tamanho);
+	
+				//int codigo;
+				printf("\nDigite o código do produto que deseja adicionar: ");
+				scanf("%d", &codigo);
+				
+				// Busca o produto pelo código
+				produto = get_produto(produtos, codigo, *tamanho);
+				if (produto)
+				{
+					system("cls");
+					consultar_produtos(produto);
+					adicionar_pedidos(pedidos, produto, *tam);
+				}
+				
+				getch();
+				break;
+			case 2:
+				consultar_pedidos();
+				getch();
+				break;
+			case 3:
+				excluir_pedidos();
+				getch();
+				break;
+			case 4:
+				alterar_pedidos();
+				getch();
+				break;
+			case 5:
+				finalizar_pedidos();
+				getch();
+				sair = 1;
+				break;
+			case 6:
+				printf("\nSAIR \n");
+				sair = 1;
+				break;
+			default:
+				printf("\nOPÇÃO INVÁLIDA! \n");
+				getch();
+				sair = 0;
 			}
-			getch();
-			break;
-			break;
-		case 2:
-			consultar_pedidos();
-			getch();
-			break;
-		case 3:
-			excluir_pedidos();
-			getch();
-			break;
-		case 4:
-			alterar_pedidos();
-			getch();
-			break;
-		case 5:
-			finalizar_pedidos();
-			getch();
-			sair = 1;
-			break;
-		case 6:
-			printf("\nSAIR \n");
-			sair = 1;
-			break;
-		default:
-			printf("\nOPÇÃO INVÁLIDA! \n");
-			getch();
-			sair = 0;
-		}
-	} while (!sair);
+		} while (!sair);	
+	}
 }
 
 #endif
