@@ -34,11 +34,49 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 2:
-			alterar_produtos();
+			// Chama as funções de listar e alterar produtos
+			if (produtos)
+			{
+				listar_produtos(produtos, *tamanho);
+
+				int codigo;
+				printf("\nDigite o código do produto que deseja alterar: ");
+				scanf("%d", &codigo);
+
+				// Busca o produto pelo código
+				PProdutos produto = get_produto(produtos, codigo, *tamanho);
+				if (!produto)
+				{
+					system("cls");
+					printf("\nCÓDIGO INVÁLIDO! \n");	
+				}
+				else
+					alterar_produtos(produto);
+			}
 			getch();
 			break;
 		case 3:
-			excluir_produtos();
+			// Chama as funções de listar e excluir produtos
+			if (produtos)
+			{
+				listar_produtos(produtos, *tamanho);
+
+				int codigo;
+				printf("\nDigite o código do produto que deseja excluir: ");
+				scanf("%d", &codigo);
+
+				// Busca o produto pelo código
+				PProdutos produto = get_produto(produtos, codigo, *tamanho);
+				if (!produto)
+				{
+					system("cls");
+					printf("\nCÓDIGO INVÁLIDO! \n");	
+				}
+				else
+				{
+					excluir_produtos(produto);
+				}
+			}
 			getch();
 			break;
 		case 4:
@@ -50,8 +88,16 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 				int codigo;
 				printf("\nDigite o código do produto que deseja consultar: ");
 				scanf("%d", &codigo);
-
-				consultar_produtos(produtos, codigo, *tamanho);
+				
+				// Busca o produto pelo código
+				PProdutos produto = get_produto(produtos, codigo, *tamanho);
+				if (!produto)
+				{
+					system("cls");
+					printf("\nCÓDIGO INVÁLIDO! \n");	
+				}
+				else
+					consultar_produtos(produto);
 			}
 			getch();
 			break;

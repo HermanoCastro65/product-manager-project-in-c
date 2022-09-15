@@ -25,38 +25,43 @@ void incluir_produtos(PPProdutos produtos, int tamanho)
 	}
 }
 
-void alterar_produtos()
+// Função alterar produtos
+void alterar_produtos(PProdutos produto)
 {
-	printf("\n alterar");
+	system("cls");
+	printf("\nALTERAR PRODUTOS: \n");
+
+	printf("\n Código: %d", produto->codigo);
+	printf("\nAlterar a descrição do Produto: ");
+	scanf(" %[^\n]", produto->descricao);
+	printf("Alterar a quantidade em estoque do Produto: ");
+	scanf("%d", &produto->qtd_estoque);
+	printf("Alterar o preço do Produto: ");
+	scanf("%f", &produto->preco);
+	printf("\nCONCLUÍDO \n");
 }
 
-void excluir_produtos()
+// Função excluir produto
+void excluir_produtos(PProdutos produto)
 {
-	printf("\n excluir");
+	system("cls");
+	printf("\nEXCLUIR PRODUTOS: \n");
+
+	free(produto);
+	printf("\nCONCLUÍDO \n");
 }
 
 // Função consultar produtos
-void consultar_produtos(PPProdutos produtos, int codigo, int tamanho)
+void consultar_produtos(PProdutos produto)
 {
 	system("cls");
 	printf("\nCONSULTAR PRODUTOS: \n");
-
-	// Busca o produto desejado pelo código
-	PProdutos produto = get_produto(produtos, codigo, tamanho);
-
-	if (!produto)
-	{
-		printf("\nCÓDIGO INVÁLIDO! \n");
-		return;
-	}
 		
 	printf("\n Código: %d", produto->codigo);
 	printf("\n Descrição: %s", produto->descricao);
 	printf("\n Preço: R$ %.2f", produto->preco);
 	printf("\n Quantidade em Estoque: %d\n", produto->qtd_estoque);
 	printf("\nCONCLUÍDO \n");
-		
-	free(produto);
 }
 
 // Função listar produtos
