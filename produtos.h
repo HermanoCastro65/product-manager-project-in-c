@@ -41,6 +41,8 @@ PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
 		if (codigo == produtos[i]->codigo)
 			return produtos[i];	
 	}
+	system("cls");
+	printf("\nCÓDIGO INVÁLIDO! \n");
 	return NULL;
 }
 

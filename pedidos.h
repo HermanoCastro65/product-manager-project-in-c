@@ -1,7 +1,7 @@
 #ifndef PEDIDOS_H
 #define PEDIDOS_H
 
-void adicionar_pedidos()
+void adicionar_pedidos(PPProdutos estoque, PPProdutos pedidos, int tamanho)
 {
 	printf("\n adicionar");
 }

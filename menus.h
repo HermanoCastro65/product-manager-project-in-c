@@ -6,8 +6,9 @@
 
 void menu_produtos(PPProdutos produtos, int *tamanho)
 {
-	int opcao, sair = 0;
-
+	int opcao, sair = 0, codigo;
+	PProdutos produto;
+	
 	// Menu de produtos
 	do
 	{
@@ -26,92 +27,63 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 		{
 		case 1:
 			// Chama a função incluir produtos
-			if (produtos)
-			{
-				incluir_produtos(produtos, *tamanho);
-				*tamanho = *tamanho + 1;
-			}
+			incluir_produtos(produtos, *tamanho);
+			*tamanho = *tamanho + 1;
+
 			getch();
 			break;
 		case 2:
 			// Chama as funções de listar e alterar produtos
-			if (produtos)
-			{
-				listar_produtos(produtos, *tamanho);
+			listar_produtos(produtos, *tamanho);
+			printf("\nDigite o código do produto que deseja alterar: ");
+			scanf("%d", &codigo);
 
-				int codigo;
-				printf("\nDigite o código do produto que deseja alterar: ");
-				scanf("%d", &codigo);
-
-				// Busca o produto pelo código
-				PProdutos produto = get_produto(produtos, codigo, *tamanho);
-				if (!produto)
-				{
-					system("cls");
-					printf("\nCÓDIGO INVÁLIDO! \n");	
-				}
-				else
-					alterar_produtos(produto);
-			}
+			// Busca o produto pelo código
+			produto = get_produto(produtos, codigo, *tamanho);
+			if (produto)
+				alterar_produtos(produto);
+				
 			getch();
 			break;
 		case 3:
 			// Chama as funções de listar e excluir produtos
-			if (produtos)
+			listar_produtos(produtos, *tamanho);
+
+			//int codigo;
+			printf("\nDigite o código do produto que deseja excluir: ");
+			scanf("%d", &codigo);
+
+			// Busca o produto pelo código
+			produto = get_produto(produtos, codigo, *tamanho);
+			if (produto)
 			{
-				listar_produtos(produtos, *tamanho);
-
-				int codigo;
-				printf("\nDigite o código do produto que deseja excluir: ");
-				scanf("%d", &codigo);
-
-				// Busca o produto pelo código
-				PProdutos produto = get_produto(produtos, codigo, *tamanho);
-				if (!produto)
+				// Busca posição no vetor
+				int posicao = get_posicao(produtos, produto, *tamanho);
+				if(posicao)
 				{
-					system("cls");
-					printf("\nCÓDIGO INVÁLIDO! \n");	
-				}
-				else
-				{
-					// Busca posição no vetor
-					int posicao = get_posicao(produtos, produto, *tamanho);
-					if(posicao)
-					{
-						excluir_produtos(produtos, posicao, *tamanho);
-						*tamanho = *tamanho - 1;
-					}
-
+					excluir_produtos(produtos, posicao, *tamanho);
+					*tamanho = *tamanho - 1;
 				}
 			}
+			
 			getch();
 			break;
 		case 4:
 			// Chama as funções de listar e consultar produtos
-			if (produtos)
-			{
-				listar_produtos(produtos, *tamanho);
-
-				int codigo;
-				printf("\nDigite o código do produto que deseja consultar: ");
-				scanf("%d", &codigo);
-				
-				// Busca o produto pelo código
-				PProdutos produto = get_produto(produtos, codigo, *tamanho);
-				if (!produto)
-				{
-					system("cls");
-					printf("\nCÓDIGO INVÁLIDO! \n");	
-				}
-				else
-					consultar_produtos(produto);
-			}
+			listar_produtos(produtos, *tamanho);
+			printf("\nDigite o código do produto que deseja consultar: ");
+			scanf("%d", &codigo);
+			
+			// Busca o produto pelo código
+			produto = get_produto(produtos, codigo, *tamanho);
+			if (produto)
+				consultar_produtos(produto);
+	
 			getch();
 			break;
 		case 5:
 			// Chama a função listar produtos
-			if (produtos)
-				listar_produtos(produtos, *tamanho);
+			listar_produtos(produtos, *tamanho);
 			getch();
 			break;
 		case 6:
@@ -127,10 +99,10 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 }
 
 
-void menu_pedidos()
+void menu_pedidos(PPProdutos estoque, int *tamanho)
 {
 	int opcao, sair = 0;
-
+	PPProdutos pedidos = aloca_vetor();
 	// Menu de pedidos
 	do
 	{
@@ -147,8 +119,14 @@ void menu_pedidos()
 		switch (opcao)
 		{
 		case 1:
-			adicionar_pedidos();
+			// Chama a função adicionar pedidos
+			if (pedidos && estoque)
+			{
+				adicionar_pedidos(estoque, pedidos, *tamanho);
+				*tamanho = *tamanho + 1;
+			}
 			getch();
+			break;
 			break;
 		case 2:
 			consultar_pedidos();
