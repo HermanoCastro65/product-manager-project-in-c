@@ -42,12 +42,19 @@ void alterar_produtos(PProdutos produto)
 }
 
 // Função excluir produto
-void excluir_produtos(PProdutos produto)
+void excluir_produtos(PPProdutos produtos, int posicao, int tamanho)
 {
 	system("cls");
 	printf("\nEXCLUIR PRODUTOS: \n");
-
-	free(produto);
+	
+	int i;
+	for (i = posicao; i < tamanho; i++)
+	{
+		produtos[i] = produtos[i + 1];
+	}
+	
+	produtos[tamanho] = NULL;
+	free(produtos[tamanho]);
 	printf("\nCONCLUÍDO \n");
 }
 

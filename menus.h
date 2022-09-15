@@ -74,7 +74,14 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 				}
 				else
 				{
-					excluir_produtos(produto);
+					// Busca posição no vetor
+					int posicao = get_posicao(produtos, produto, *tamanho);
+					if(posicao)
+					{
+						excluir_produtos(produtos, posicao, *tamanho);
+						*tamanho = *tamanho - 1;
+					}
+
 				}
 			}
 			getch();

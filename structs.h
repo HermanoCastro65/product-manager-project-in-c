@@ -14,7 +14,7 @@ PPProdutos aloca_vetor()
 	PPProdutos produtos = (PPProdutos)malloc(sizeof(PProdutos));
 	if (produtos == NULL)
 	{
-		printf("\n\nMemÃ³ria insuficiente\n\n");
+		printf("\n\nMemória insuficiente\n\n");
 		exit(1);
 	}
 	return produtos;
@@ -26,7 +26,7 @@ void aloca_produto(PPProdutos produtos, int tamanho)
 	produtos[tamanho] = (PProdutos)malloc(sizeof(Produtos));
 	if (produtos[tamanho] == NULL)
 	{
-		printf("\n\nMemÃ³ria insuficiente\n\n");
+		printf("\n\nMemória insuficiente\n\n");
 		exit(1);
 	}
 }
@@ -34,7 +34,7 @@ void aloca_produto(PPProdutos produtos, int tamanho)
 // Encontra produto pelo código
 PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
 {
-	int i = 0;
+	int i;
 	for (i = 0; i < tamanho; i++)
 	{
 		if (codigo == produtos[i]->codigo)
@@ -43,4 +43,15 @@ PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
 	return NULL;
 }
 
+// Encontra posição do produto no vetor
+ int get_posicao(PPProdutos produtos, PProdutos produto, int tamanho)
+ {
+ 	int i;
+	for (i = 0; i < tamanho; i++)
+	{
+		if (produto == produtos[i])
+			return i;	
+	}
+	return;
+ }
 #endif
