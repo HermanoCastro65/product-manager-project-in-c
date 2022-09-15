@@ -73,7 +73,7 @@ void incluir_produtos(PPProdutos produtos, int tamanho)
 		printf("Informe a quantidade em estoque do Produto: ");
 		scanf("%d", &produtos[tamanho]->qtd_estoque);
 		printf("Informe o preço do Produto: ");
-		scanf("%f", &produtos[tamanho]->preco)
+		scanf("%f", &produtos[tamanho]->preco);
 	}
 	
 	printf("\nCONCLUÍDO \n");
