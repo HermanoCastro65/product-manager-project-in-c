@@ -138,7 +138,7 @@ void listar_produtos(PPProdutos produtos, int tamanho)
 	for (i = 0; i < tamanho; i++)
 	{
 		printf("\n Código: %d", produtos[i]->codigo);
-		printf("\n Descrição: %s", produtos[i]->descricao);
+		printf("\n Descrição: %s \n", produtos[i]->descricao);
 	}
 	
 	printf("\nCONCLUÍDO \n");
