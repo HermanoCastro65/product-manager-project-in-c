@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 			switch (opcao)
 			{
 			case 1:
-				// Chama o meu de produtos
+				// Chama o menu de produtos
 				menu_produtos(produtos, &tamanho);
 				getch();
 				break;

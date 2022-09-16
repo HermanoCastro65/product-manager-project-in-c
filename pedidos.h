@@ -45,14 +45,38 @@ void consultar_pedidos(PProdutos pedido, int posicao)
 	printf("\nCONCLUÍDO \n");
 }
 
-void excluir_pedidos()
+// Função repor pedidos - antes de excluir repoem no estoque
+void repor_pedidos(PProdutos produto, PProdutos pedido) 
 {
-	printf("\n excluir");
+	printf("\nREPOR PEDIDOS: \n");
+	
+	produto->qtd_estoque = produto->qtd_estoque + pedido->qtd_estoque;
+	
+	printf("\nCONCLUÍDO \n");
 }
- 
-void alterar_pedidos()
+// Função alterar pedidos
+void alterar_pedidos(PProdutos produto, PProdutos pedido)
 {
-	printf("\n alterar");
+	system("cls");
+	printf("\nALTERAR PEDIDOS: \n");
+	
+	int qtd;
+	printf("\n Código: %d", produto->codigo);
+	printf("Alterar a quantidade do produto no pedido: ");
+	scanf("%d", &qtd);
+	
+	if(qtd <= pedido->qtd_estoque + produto->qtd_estoque)
+	{
+		produto->qtd_estoque = produto->qtd_estoque + pedido->qtd_estoque;
+		pedido->qtd_estoque = qtd;
+		produto->qtd_estoque = produto->qtd_estoque - qtd;
+	} else
+	{
+		system("cls");
+		printf("\nQUANTIDADE FORA DE ESTOQUE \n");
+	}
+
+	printf("\nCONCLUÍDO \n");
 }
 
 void finalizar_pedidos()

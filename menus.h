@@ -156,18 +156,20 @@ void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, int *tamanho, int *ta
 				getch();
 				break;
 			case 3:
-			// Chama as funções de listar produtos e excluir produtos
+			// Chama as funções de listar produtos,  repor pedidos e excluir produtos
 			listar_produtos(pedidos, *tam);
 
 			printf("\nDigite o código do produto que deseja excluir no pedido: ");
 			scanf("%d", &codigo);
 
 			// Busca o produto pelo código
+			produto = get_produto(produtos, codigo, *tamanho);
 			pedido = get_produto(pedidos, codigo, *tam);
-			if (pedido)
+			if (produtos && pedido)
 			{
 				// Busca posição no vetor
 				int posicao = get_posicao(pedidos, pedido, *tam);
+				repor_pedidos(produto, pedido);
 				excluir_produtos(pedidos, posicao, *tam);
 				*tam = *tam - 1;
 			}
@@ -175,9 +177,19 @@ void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, int *tamanho, int *ta
 			getch();
 			break;
 			case 4:
-				alterar_pedidos();
-				getch();
-				break;
+			// Chama as funções de listar e alterar pedidos
+			listar_produtos(pedidos, *tam);
+			printf("\nDigite o código do produto que deseja alterar no pedido: ");
+			scanf("%d", &codigo);
+
+			// Busca o produto pelo código
+			produto = get_produto(produtos, codigo, *tamanho);
+			pedido = get_produto(pedidos, codigo, *tam);
+			if (produto && pedido)
+				alterar_pedidos(produto, pedido);
+				
+			getch();
+			break;
 			case 5:
 				finalizar_pedidos();
 				getch();
