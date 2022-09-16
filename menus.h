@@ -192,7 +192,8 @@ void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, PPPedidos historico, 
 			getch();
 			break;
 			case 5:
-				finalizar_pedidos();
+				finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int *tam, int *tam_hist);
+				
 				getch();
 				sair = 1;
 				break;

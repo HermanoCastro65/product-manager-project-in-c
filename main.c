@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 				break;
 			case 3:
 				// Chama o histórico
-				ver_historico(historico, &tam_hist);
+				//ver_historico(historico, &tam_hist);
 				getch();
 				break;
 			case 5:

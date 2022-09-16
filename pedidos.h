@@ -1,6 +1,8 @@
 #ifndef PEDIDOS_H
 #define PEDIDOS_H
 
+#include "historico.h"
+
 // Função adicionar pedidos
 void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam)
 {
@@ -79,9 +81,26 @@ void alterar_pedidos(PProdutos produto, PProdutos pedido)
 	printf("\nCONCLUÍDO \n");
 }
 
-void finalizar_pedidos()
+PPedidos finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam_hist)
 {
-	printf("\n finalizar");
+	system("cls");
+	printf("\nFINALIZAR PEDIDOS: \n");
+	
+	// Aloca o espaço para incluir um pedido no vetor de historico
+	aloca_pedido(historico, tam_hist);
+	
+	if (historico[tam_hist])
+	{
+		historico[tam_hist]->codigo = 100 + rand() % 900;
+		historico[tam_hist]->pedidos = pedidos;
+		historico[tam_hist]->total = 0;
+		
+		int i;
+		for (i = 0; i < tam; i++)
+			historico[tam_hist]->total = historico[tam_hist]->total + (pedidos[tam]->preco * pedidos[tam]->qtd_estoque);
+	}
+
+	printf("\nCONCLUÍDO \n");
 }
 
 #endif
