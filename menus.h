@@ -3,6 +3,7 @@
 
 #include "produtos.h"
 #include "pedidos.h"
+#include "historico.h"
 
 void menu_produtos(PPProdutos produtos, int *tamanho)
 {
@@ -96,7 +97,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 }
 
 
-void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, int *tamanho, int *tam)
+void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, PPPedidos historico, int *tamanho, int *tam, int *tam_hist)
 {
 	int opcao, sair = 0, codigo;
 	PProdutos produto, pedido;
