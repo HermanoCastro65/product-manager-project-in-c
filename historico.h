@@ -34,4 +34,10 @@ void aloca_pedido(PPPedidos pedidos, int tam_hist)
 	}
 }
 
+// Função ver histórico
+void ver_historico(PPPedidos historico, int *tam_hist)
+{
+		printf("\n\nVer Histórico\n\n");
+};
+
 #endif
