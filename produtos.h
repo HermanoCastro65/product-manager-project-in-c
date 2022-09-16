@@ -15,7 +15,7 @@ PPProdutos aloca_vetor()
 	PPProdutos produtos = (PPProdutos)malloc(sizeof(PProdutos));
 	if (produtos == NULL)
 	{
-		printf("\n\nMemÃ³ria insuficiente\n\n");
+		printf("\n\nMemória insuficiente\n\n");
 		exit(1);
 	}
 	return produtos;
@@ -27,12 +27,12 @@ void aloca_produto(PPProdutos produtos, int tamanho)
 	produtos[tamanho] = (PProdutos)malloc(sizeof(Produtos));
 	if (produtos[tamanho] == NULL)
 	{
-		printf("\n\nMemÃ³ria insuficiente\n\n");
+		printf("\n\nMemória insuficiente\n\n");
 		exit(1);
 	}
 }
 
-// Encontra produto pelo cÃ³digo
+// Encontra produto pelo código
 PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
 {
 	int i;
@@ -42,11 +42,11 @@ PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
 			return produtos[i];	
 	}
 	system("cls");
-	printf("\nCÃ“DIGO INVÃLIDO! \n");
+	printf("\nCÓDIGO INVÁLIDO! \n");
 	return NULL;
 }
 
-// Encontra posiÃ§Ã£o do produto no vetor
+// Encontra posição do produto no vetor
  int get_posicao(PPProdutos produtos, PProdutos produto, int tamanho)
  {
  	int i;
@@ -58,47 +58,47 @@ PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho)
 	return;
  }
  
-// FunÃ§Ã£o incluir produtos
+// Função incluir produtos
 void incluir_produtos(PPProdutos produtos, int tamanho)
 {
 	system("cls");
 	printf("\nINCLUIR PRODUTOS: \n");
 
-	// Aloca o espaÃ§o para incluir um produto
+	// Aloca o espaço para incluir um produto
 	aloca_produto(produtos, tamanho);
 
 	if (produtos[tamanho])
 	{
 		produtos[tamanho]->codigo = 1000 + rand() % 9000;
-		printf("\nInforme a descriÃ§Ã£o do Produto: ");
+		printf("\nInforme a descrição do Produto: ");
 		scanf(" %[^\n]", produtos[tamanho]->descricao);
 		printf("Informe a quantidade em estoque do Produto: ");
 		scanf("%d", &produtos[tamanho]->qtd_estoque);
-		printf("Informe o preÃ§o do Produto: ");
+		printf("Informe o preço do Produto: ");
 		scanf("%f", &produtos[tamanho]->preco);
 	}
 	
-	printf("\nCONCLUÃDO \n");
+	printf("\nCONCLUÍDO \n");
 }
 
-// FunÃ§Ã£o alterar produtos
+// Função alterar produtos
 void alterar_produtos(PProdutos produto)
 {
 	system("cls");
 	printf("\nALTERAR PRODUTOS: \n");
 
-	printf("\n CÃ³digo: %d", produto->codigo);
-	printf("\nAlterar a descriÃ§Ã£o do Produto: ");
+	printf("\n Código: %d", produto->codigo);
+	printf("\nAlterar a descrição do Produto: ");
 	scanf(" %[^\n]", produto->descricao);
 	printf("Alterar a quantidade em estoque do Produto: ");
 	scanf("%d", &produto->qtd_estoque);
-	printf("Alterar o preÃ§o do Produto: ");
+	printf("Alterar o preço do Produto: ");
 	scanf("%f", &produto->preco);
 	
-	printf("\nCONCLUÃDO \n");
+	printf("\nCONCLUÍDO \n");
 }
 
-// FunÃ§Ã£o excluir produtos
+// Função excluir produtos
 void excluir_produtos(PPProdutos produtos, int posicao, int tamanho)
 {
 	system("cls");
@@ -112,24 +112,24 @@ void excluir_produtos(PPProdutos produtos, int posicao, int tamanho)
 	produtos[tamanho] = NULL;
 	free(produtos[tamanho]);
 	
-	printf("\nCONCLUÃDO \n");
+	printf("\nCONCLUÍDO \n");
 }
 
-// FunÃ§Ã£o consultar produtos
+// Função consultar produtos
 void consultar_produtos(PProdutos produto)
 {
 	system("cls");
 	printf("\nCONSULTAR PRODUTOS: \n");
 		
-	printf("\n CÃ³digo: %d", produto->codigo);
-	printf("\n DescriÃ§Ã£o: %s", produto->descricao);
-	printf("\n PreÃ§o: R$ %.2f", produto->preco);
+	printf("\n Código: %d", produto->codigo);
+	printf("\n Descrição: %s", produto->descricao);
+	printf("\n Preço: R$ %.2f", produto->preco);
 	printf("\n Quantidade em Estoque: %d\n", produto->qtd_estoque);
 	
-	printf("\nCONCLUÃDO \n");
+	printf("\nCONCLUÍDO \n");
 }
 
-// FunÃ§Ã£o listar produtos
+// Função listar produtos
 void listar_produtos(PPProdutos produtos, int tamanho)
 {
 	system("cls");
@@ -138,11 +138,11 @@ void listar_produtos(PPProdutos produtos, int tamanho)
 	int i;
 	for (i = 0; i < tamanho; i++)
 	{
-		printf("\n CÃ³digo: %d", produtos[i]->codigo);
-		printf("\n DescriÃ§Ã£o: %s \n", produtos[i]->descricao);
+		printf("\n Código: %d", produtos[i]->codigo);
+		printf("\n Descrição: %s \n", produtos[i]->descricao);
 	}
 	
-	printf("\nCONCLUÃDO \n");
+	printf("\nCONCLUÍDO \n");
 }
 
 #endif

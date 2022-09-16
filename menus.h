@@ -20,25 +20,25 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 		printf("\n(4) Consultar Produtos");
 		printf("\n(5) Listar Produtos");
 		printf("\n(6) Sair");
-		printf("\n\nDigite uma op√ß√£o: ");
+		printf("\n\nDigite uma opÁ„o: ");
 		scanf("%d", &opcao);
 
 		switch (opcao)
 		{
 		case 1:
-			// Chama a fun√ß√£o incluir produtos
+			// Chama a funÁ„o incluir produtos
 			incluir_produtos(produtos, *tamanho);
 			*tamanho = *tamanho + 1;
 
 			getch();
 			break;
 		case 2:
-			// Chama as fun√ß√µes de listar e alterar produtos
+			// Chama as funÁıes de listar e alterar produtos
 			listar_produtos(produtos, *tamanho);
-			printf("\nDigite o c√≥digo do produto que deseja alterar: ");
+			printf("\nDigite o cÛdigo do produto que deseja alterar: ");
 			scanf("%d", &codigo);
 
-			// Busca o produto pelo c√≥digo
+			// Busca o produto pelo cÛdigo
 			produto = get_produto(produtos, codigo, *tamanho);
 			if (produto)
 				alterar_produtos(produto);
@@ -46,17 +46,17 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 3:
-			// Chama as fun√ß√µes de listar e excluir produtos
+			// Chama as funÁıes de listar e excluir produtos
 			listar_produtos(produtos, *tamanho);
 
-			printf("\nDigite o c√≥digo do produto que deseja excluir: ");
+			printf("\nDigite o cÛdigo do produto que deseja excluir: ");
 			scanf("%d", &codigo);
 
-			// Busca o produto pelo c√≥digo
+			// Busca o produto pelo cÛdigo
 			produto = get_produto(produtos, codigo, *tamanho);
 			if (produto)
 			{
-				// Busca posi√ß√£o no vetor
+				// Busca posiÁ„o no vetor
 				int posicao = get_posicao(produtos, produto, *tamanho);
 				excluir_produtos(produtos, posicao, *tamanho);
 				*tamanho = *tamanho - 1;
@@ -65,12 +65,12 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 4:
-			// Chama as fun√ß√µes de listar e consultar produtos
+			// Chama as funÁıes de listar e consultar produtos
 			listar_produtos(produtos, *tamanho);
-			printf("\nDigite o c√≥digo do produto que deseja consultar: ");
+			printf("\nDigite o cÛdigo do produto que deseja consultar: ");
 			scanf("%d", &codigo);
 			
-			// Busca o produto pelo c√≥digo
+			// Busca o produto pelo cÛdigo
 			produto = get_produto(produtos, codigo, *tamanho);
 			if (produto)
 				consultar_produtos(produto);
@@ -78,7 +78,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			getch();
 			break;
 		case 5:
-			// Chama a fun√ß√£o listar produtos
+			// Chama a funÁ„o listar produtos
 			listar_produtos(produtos, *tamanho);
 			
 			getch();
@@ -88,7 +88,7 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 			sair = 1;
 			break;
 		default:
-			printf("\nOP√á√ÉO INV√ÅLIDA! \n");
+			printf("\nOP«√O INV¡LIDA! \n");
 			getch();
 			sair = 0;
 		}
@@ -96,10 +96,9 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 }
 
 
-void menu_pedidos(PPProdutos produtos, int *tamanho, int *tam)
+void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, int *tamanho, int *tam)
 {
 	int opcao, sair = 0, codigo;
-	PPProdutos pedidos = aloca_vetor();
 	PProdutos produto, pedido;
 
 	if(pedidos)
@@ -114,19 +113,19 @@ void menu_pedidos(PPProdutos produtos, int *tamanho, int *tam)
 			printf("\n(4) Alterar Pedidos");
 			printf("\n(5) Finalizar Pedidos");
 			printf("\n(6) Sair");
-			printf("\n\nDigite uma op√ß√£o: ");
+			printf("\n\nDigite uma opÁ„o: ");
 			scanf("%d", &opcao);
 	
 			switch (opcao)
 			{
 			case 1:
-				// Chama as fun√ß√µes de listar produtos, consultar produtos e adicionar pedidos
+				// Chama as funÁıes de listar produtos, consultar produtos e adicionar pedidos
 				listar_produtos(produtos, *tamanho);
 	
-				printf("\nDigite o c√≥digo do produto que deseja adicionar: ");
+				printf("\nDigite o cÛdigo do produto que deseja adicionar: ");
 				scanf("%d", &codigo);
 				
-				// Busca o produto pelo c√≥digo
+				// Busca o produto pelo cÛdigo
 				produto = get_produto(produtos, codigo, *tamanho);
 				if (produto)
 				{
@@ -139,17 +138,17 @@ void menu_pedidos(PPProdutos produtos, int *tamanho, int *tam)
 				getch();
 				break;
 			case 2:
-				// Chama a fun√ß√£o listar produtos e colsultar pedidos
+				// Chama a funÁ„o listar produtos e colsultar pedidos
 				listar_produtos(pedidos, *tam);
 
-				printf("\nDigite o c√≥digo do produto que deseja consultar no pedido: ");
+				printf("\nDigite o cÛdigo do produto que deseja consultar no pedido: ");
 				scanf("%d", &codigo);
 				
-				// Busca o produto pelo c√≥digo
+				// Busca o produto pelo cÛdigo
 				pedido = get_produto(pedidos, codigo, *tam);
 				if (pedido)
 				{
-					// Busca posi√ß√£o no vetor
+					// Busca posiÁ„o no vetor
 					int posicao = get_posicao(pedidos, pedido, *tam);
 					consultar_pedidos(pedido, posicao);
 				}
@@ -157,9 +156,24 @@ void menu_pedidos(PPProdutos produtos, int *tamanho, int *tam)
 				getch();
 				break;
 			case 3:
-				excluir_pedidos();
-				getch();
-				break;
+			// Chama as funÁıes de listar produtos e excluir produtos
+			listar_produtos(pedidos, *tam);
+
+			printf("\nDigite o cÛdigo do produto que deseja excluir no pedido: ");
+			scanf("%d", &codigo);
+
+			// Busca o produto pelo cÛdigo
+			pedido = get_produto(pedidos, codigo, *tam);
+			if (pedido)
+			{
+				// Busca posiÁ„o no vetor
+				int posicao = get_posicao(pedidos, pedido, *tam);
+				excluir_produtos(pedidos, posicao, *tam);
+				*tam = *tam - 1;
+			}
+			
+			getch();
+			break;
 			case 4:
 				alterar_pedidos();
 				getch();
@@ -174,7 +188,7 @@ void menu_pedidos(PPProdutos produtos, int *tamanho, int *tam)
 				sair = 1;
 				break;
 			default:
-				printf("\nOP√á√ÉO INV√ÅLIDA! \n");
+				printf("\nOP«√O INV¡LIDA! \n");
 				getch();
 				sair = 0;
 			}

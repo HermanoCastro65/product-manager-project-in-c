@@ -1,7 +1,7 @@
 #ifndef PEDIDOS_H
 #define PEDIDOS_H
 
-// Fun√ß√£o adicionar pedidos
+// FunÁ„o adicionar pedidos
 void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam)
 {
 	printf("\nADICIONAR PEDIDOS: \n");
@@ -12,7 +12,7 @@ void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam)
 
 	if(qtd <= produto->qtd_estoque)
 	{
-		// Aloca o espa√ßo para incluir um produto no vetor de pedidos
+		// Aloca o espaÁo para incluir um produto no vetor de pedidos
 		aloca_produto(pedidos, tam);
 		
 		pedidos[tam]->codigo = produto->codigo;
@@ -26,32 +26,35 @@ void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam)
 		printf("\nQUANTIDADE FORA DE ESTOQUE \n");
 	}
 	
-	printf("\nCONCLU√çDO \n");
+	printf("\nCONCLUÕDO \n");
 }
 
 
-// Fun√ß√£o consultar pedidos
+// FunÁ„o consultar pedidos
 void consultar_pedidos(PProdutos pedido, int posicao)
 {
 	system("cls");
 	printf("\nCONSULTAR PEDIDOS: \n");
 	
 	printf("\n Pedido %d", posicao + 1);
-	printf("\n C√≥digo do produto: %d", pedido->codigo);
-	printf("\n Descri√ß√£o: %s", pedido->descricao);
-	printf("\n Pre√ßo: R$ %.2f", pedido->preco);
+	printf("\n CÛdigo do produto: %d", pedido->codigo);
+	printf("\n DescriÁ„o: %s", pedido->descricao);
+	printf("\n PreÁo: R$ %.2f", pedido->preco);
 	printf("\n Quantidade da compra: %d\n", pedido->qtd_estoque);
 	
-	printf("\nCONCLU√çDO \n");
+	printf("\nCONCLUÕDO \n");
 }
+
 void excluir_pedidos()
 {
 	printf("\n excluir");
 }
+ 
 void alterar_pedidos()
 {
 	printf("\n alterar");
 }
+
 void finalizar_pedidos()
 {
 	printf("\n finalizar");
