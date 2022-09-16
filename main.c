@@ -27,7 +27,9 @@ int main(int argc, char *argv[])
 			system("cls");
 			printf("\n(1) Menu Produtos");
 			printf("\n(2) Menu Pedidos");
-			printf("\n(3) Sair");
+			printf("\n(3) Histórico de Pedidos");
+			printf("\n(4) Destruir Loja");
+			printf("\n(5) Sair");
 			printf("\n\nDigite uma opção: ");
 			scanf("%d", &opcao);
 	
@@ -43,7 +45,7 @@ int main(int argc, char *argv[])
 				menu_pedidos(produtos, pedidos, &tamanho, &tam);
 				getch();
 				break;
-			case 3:
+			case 5:
 				printf("\nSAIR \n");
 				sair = 1;
 				break;
