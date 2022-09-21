@@ -50,6 +50,7 @@ int main(int argc, char * argv[]) {
                 getch();
                 break;
             case 4:
+            	system("cls");
                 // Chama a função destruir
                 destruir_produtos(produtos, & tamanho);
                 destruir_pedidos(historico, & tam_hist);
