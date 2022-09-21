@@ -49,7 +49,7 @@ void incluir_produtos(PPProdutos produtos, int tamanho) {
     system("cls");
     printf("\nINCLUIR PRODUTOS: \n");
 
-    aloca_produto(produtos, tamanho); // aloca o espaço para incluir um produto
+    aloca_produto(produtos, tamanho);
 
     if (produtos[tamanho]) {
         produtos[tamanho] -> codigo = 1000 + rand() % 9000;
