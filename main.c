@@ -10,16 +10,11 @@ int main(int argc, char * argv[]) {
 
     // Declaração de variáveis globais
     int opcao, sair = 0, tamanho = 0, tam_hist = 0;
-
-    // Aloca vetor para os produtos em estoque
-    PPProdutos produtos = aloca_vetor();
-
-    // Aloca vetor para os pedidos no histórico
-    PPPedidos historico = aloca_historico();
+    PPProdutos produtos = aloca_vetor(); // aloca vetor para os produtos em estoque
+    PPPedidos historico = aloca_historico(); // aloca vetor para os pedidos no histórico
 
     if (produtos && historico) {
-        // Carrega arquivo de texto no vetor de produtos
-        ler_arquivo(produtos, & tamanho);
+        ler_arquivo(produtos, & tamanho); // Carrega arquivo de texto no vetor de produtos
         getchar();
 
         // Menu principal
@@ -35,23 +30,19 @@ int main(int argc, char * argv[]) {
 
             switch (opcao) {
             case 1:
-                // Chama o menu de produtos
                 menu_produtos(produtos, & tamanho);
                 getch();
                 break;
             case 2:
-                // Chama o menu de pedidos
                 menu_pedidos(produtos, historico, & tamanho, & tam_hist);
                 getch();
                 break;
             case 3:
-                // Chama o histórico
                 ver_historico(historico, tam_hist);
                 getch();
                 break;
             case 4:
             	system("cls");
-                // Chama a função destruir
                 destruir_produtos(produtos, & tamanho);
                 destruir_pedidos(historico, & tam_hist);
                 getch();

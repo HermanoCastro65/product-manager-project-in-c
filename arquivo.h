@@ -3,9 +3,7 @@
 
 void ler_arquivo(PPProdutos produtos, int * tamanho) {
 	FILE * file;
-
-    // Abre o arquivo
-    file = fopen("arquivo.txt", "r");
+    file = fopen("arquivo.txt", "r"); // abre o arquivo
 
     if (file == NULL) {
         printf("\nNão foi possísvel ler o arquivo.\n");
@@ -17,8 +15,7 @@ void ler_arquivo(PPProdutos produtos, int * tamanho) {
 
     // Lê o arquivo e armazena no vetor de produtos
     while (!feof(file)) {
-        // Aloca o espaço para incluir um produto
-        aloca_produto(produtos, * tamanho);
+        aloca_produto(produtos, * tamanho); // aloca o espaço para incluir um produto
 
         if (produtos[ * tamanho]) {
             fgets(produtos[ * tamanho] -> descricao, sizeof(produtos[ * tamanho] -> descricao), file);
@@ -29,8 +26,8 @@ void ler_arquivo(PPProdutos produtos, int * tamanho) {
         }
     };
 
-    // Fecha arquivo
-    fclose(file);
+    
+    fclose(file); // fecha arquivo
 
     printf("\nARQUIVO LIDO COM SUCESSO \n");
 }

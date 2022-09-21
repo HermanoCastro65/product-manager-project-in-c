@@ -1,7 +1,6 @@
 #ifndef PEDIDOS_H
 #define PEDIDOS_H
 
-// Struct de pedidos
 typedef struct pedido {
     int codigo;
     PPProdutos pedidos;
@@ -10,7 +9,6 @@ typedef struct pedido {
 }
 Pedidos, * PPedidos, ** PPPedidos;
 
-// Aloca o vetor de pedidos
 PPPedidos aloca_historico() {
     PPPedidos pedidos = (PPPedidos) malloc(sizeof(PPedidos));
     if (pedidos == NULL) {
@@ -20,7 +18,6 @@ PPPedidos aloca_historico() {
     return pedidos;
 }
 
-// Aloca struct de pedido
 void aloca_pedido(PPPedidos pedidos, int tam_hist) {
     pedidos[tam_hist] = (PPedidos) malloc(sizeof(Pedidos));
     if (pedidos[tam_hist] == NULL) {
@@ -29,7 +26,6 @@ void aloca_pedido(PPPedidos pedidos, int tam_hist) {
     }
 }
 
-// Função adicionar pedidos
 void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam) {
     printf("\nADICIONAR PEDIDOS: \n");
 
@@ -38,14 +34,14 @@ void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam) {
     scanf("%d", & qtd);
 
     if (qtd <= produto -> qtd_estoque) {
-        // Aloca o espaço para incluir um produto no vetor de pedidos
-        aloca_produto(pedidos, tam);
-
-        pedidos[tam] -> codigo = produto -> codigo;
-        strcpy(pedidos[tam] -> descricao, produto -> descricao);
-        pedidos[tam] -> preco = produto -> preco;
-        pedidos[tam] -> qtd_estoque = qtd;
-        produto -> qtd_estoque = produto -> qtd_estoque - qtd;
+        aloca_produto(pedidos, tam); // aloca novo vetor para os produtos em estoque
+		if(pedidos[tam]){
+	        pedidos[tam] -> codigo = produto -> codigo;
+	        strcpy(pedidos[tam] -> descricao, produto -> descricao);
+	        pedidos[tam] -> preco = produto -> preco;
+	        pedidos[tam] -> qtd_estoque = qtd;
+	        produto -> qtd_estoque = produto -> qtd_estoque - qtd;			
+		}
     } else {
         system("cls");
         printf("\nQUANTIDADE FORA DE ESTOQUE \n");
@@ -54,7 +50,6 @@ void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função consultar pedidos
 void consultar_pedidos(PProdutos pedido, int posicao) {
     system("cls");
     printf("\nCONSULTAR PEDIDOS: \n");
@@ -67,8 +62,6 @@ void consultar_pedidos(PProdutos pedido, int posicao) {
 
     printf("\nCONCLUÍDO \n");
 }
-
-// Função repor pedidos - antes de excluir repoem no estoque
 void repor_pedidos(PProdutos produto, PProdutos pedido) {
     printf("\nREPOR PEDIDOS: \n");
 
@@ -77,7 +70,6 @@ void repor_pedidos(PProdutos produto, PProdutos pedido) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função alterar pedidos
 void alterar_pedidos(PProdutos produto, PProdutos pedido) {
     system("cls");
     printf("\nALTERAR PEDIDOS: \n");
@@ -99,13 +91,11 @@ void alterar_pedidos(PProdutos produto, PProdutos pedido) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função finalizar pedidos
 void finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam_hist) {
     system("cls");
     printf("\nFINALIZAR PEDIDOS: \n");
 
-    // Aloca o espaço para incluir um pedido no vetor de historico
-    aloca_pedido(historico, tam_hist);
+    aloca_pedido(historico, tam_hist); // aloca o espaço para incluir um pedido no vetor de historico
 
     if (historico[tam_hist]) {
         historico[tam_hist] -> codigo = 100 + rand() % 900;
@@ -123,7 +113,6 @@ void finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam
     printf("\nCONCLUÍDO \n");
 }
 
-// Função ver histórico
 void ver_historico(PPPedidos historico, int tam_hist) {
     system("cls");
     printf("\nVER HISTÓRICO: \n");
@@ -143,13 +132,11 @@ void ver_historico(PPPedidos historico, int tam_hist) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função destruir pedidos
 void destruir_pedidos(PPPedidos historico, int * tam_hist) {
     historico = NULL;
     free(historico);
 
-    // Aloca novo vetor para os pedidos no histórico
-    PPPedidos historico_novo = aloca_historico();
+    PPPedidos historico_novo = aloca_historico(); // aloca novo vetor para os pedidos no histórico
     if (historico_novo) {
         historico = historico_novo;
         * tam_hist = 0;

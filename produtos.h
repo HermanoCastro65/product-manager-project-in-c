@@ -1,7 +1,6 @@
 #ifndef PRODUTOS_H
 #define PRODUTOS_H
 
-// Struct de produto
 typedef struct produto {
     char descricao[100];
     int codigo, qtd_estoque;
@@ -9,7 +8,6 @@ typedef struct produto {
 }
 Produtos, * PProdutos, ** PPProdutos;
 
-// Aloca o vetor de produtos
 PPProdutos aloca_vetor() {
     PPProdutos produtos = (PPProdutos) malloc(sizeof(PProdutos));
     if (produtos == NULL) {
@@ -19,7 +17,6 @@ PPProdutos aloca_vetor() {
     return produtos;
 }
 
-// Aloca struct de produto
 void aloca_produto(PPProdutos produtos, int tamanho) {
     produtos[tamanho] = (PProdutos) malloc(sizeof(Produtos));
     if (produtos[tamanho] == NULL) {
@@ -28,7 +25,6 @@ void aloca_produto(PPProdutos produtos, int tamanho) {
     }
 }
 
-// Encontra produto pelo código
 PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho) {
     int i;
     for (i = 0; i < tamanho; i++) {
@@ -40,7 +36,6 @@ PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho) {
     return NULL;
 }
 
-// Encontra posição do produto no vetor
 int get_posicao(PPProdutos produtos, PProdutos produto, int tamanho) {
     int i;
     for (i = 0; i < tamanho; i++) {
@@ -50,13 +45,11 @@ int get_posicao(PPProdutos produtos, PProdutos produto, int tamanho) {
     return;
 }
 
-// Função incluir produtos
 void incluir_produtos(PPProdutos produtos, int tamanho) {
     system("cls");
     printf("\nINCLUIR PRODUTOS: \n");
 
-    // Aloca o espaço para incluir um produto
-    aloca_produto(produtos, tamanho);
+    aloca_produto(produtos, tamanho); // aloca o espaço para incluir um produto
 
     if (produtos[tamanho]) {
         produtos[tamanho] -> codigo = 1000 + rand() % 9000;
@@ -71,7 +64,6 @@ void incluir_produtos(PPProdutos produtos, int tamanho) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função alterar produtos
 void alterar_produtos(PProdutos produto) {
     system("cls");
     printf("\nALTERAR PRODUTOS: \n");
@@ -87,7 +79,6 @@ void alterar_produtos(PProdutos produto) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função excluir produtos
 void excluir_produtos(PPProdutos produtos, int posicao, int tamanho) {
     system("cls");
     printf("\nEXCLUIR PRODUTOS: \n");
@@ -102,7 +93,6 @@ void excluir_produtos(PPProdutos produtos, int posicao, int tamanho) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função consultar produtos
 void consultar_produtos(PProdutos produto) {
     system("cls");
     printf("\nCONSULTAR PRODUTOS: \n");
@@ -115,7 +105,6 @@ void consultar_produtos(PProdutos produto) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função listar produtos
 void listar_produtos(PPProdutos produtos, int tamanho) {
     system("cls");
     printf("\nLISTAR PRODUTOS: \n");
@@ -129,13 +118,11 @@ void listar_produtos(PPProdutos produtos, int tamanho) {
     printf("\nCONCLUÍDO \n");
 }
 
-// Função destruir produtos
 void destruir_produtos(PPProdutos produtos, int * tamanho) {
     produtos = NULL;
     free(produtos);
 
-    // Aloca novo vetor para os produtos em estoque
-    PPProdutos produtos_novo = aloca_vetor();
+    PPProdutos produtos_novo = aloca_vetor(); // aloca novo vetor para os produtos em estoque
     if (produtos_novo) {
         produtos = produtos_novo;
         * tamanho = 0;
