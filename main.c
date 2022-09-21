@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
-
 #include "menus.h"
 #include "arquivo.h"
 
@@ -52,7 +51,8 @@ int main(int argc, char * argv[]) {
                 break;
             case 4:
                 // Chama a função destruir
-                destruir(produtos, historico, &tamanho, &tam_hist);
+                destruir_produtos(produtos, & tamanho);
+                destruir_pedidos(historico, & tam_hist);
                 getch();
                 break;
             case 5:

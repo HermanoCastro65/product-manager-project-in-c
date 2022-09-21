@@ -129,4 +129,18 @@ void listar_produtos(PPProdutos produtos, int tamanho) {
     printf("\nCONCLUÍDO \n");
 }
 
+// Função destruir produtos
+void destruir_produtos(PPProdutos produtos, int * tamanho) {
+    produtos = NULL;
+    free(produtos);
+
+    // Aloca novo vetor para os produtos em estoque
+    PPProdutos produtos_novo = aloca_vetor();
+    if (produtos_novo) {
+        produtos = produtos_novo;
+        * tamanho = 0;
+        printf("\nDESTRUIU PRODUTOS \n");
+    }
+}
+
 #endif

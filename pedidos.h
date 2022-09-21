@@ -143,4 +143,18 @@ void ver_historico(PPPedidos historico, int tam_hist) {
     printf("\nCONCLUÍDO \n");
 }
 
+// Função destruir pedidos
+void destruir_pedidos(PPPedidos historico, int * tam_hist) {
+    historico = NULL;
+    free(historico);
+
+    // Aloca novo vetor para os pedidos no histórico
+    PPPedidos historico_novo = aloca_historico();
+    if (historico_novo) {
+        historico = historico_novo;
+        * tam_hist = 0;
+        printf("\nDESTRUIU HISTÓRICO \n");
+    }
+}
+
 #endif

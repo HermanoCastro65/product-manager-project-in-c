@@ -195,33 +195,4 @@ void menu_pedidos(PPProdutos produtos, PPPedidos historico, int * tamanho, int *
     }
 }
 
-// Função Destruir
-void destruir(PPProdutos produtos, PPPedidos historico, int * tamanho, int * tam_hist) {
-    printf("\nDESTRUIR: \n");
-
-    produtos = NULL;
-    free(produtos);
-
-    // Aloca novo vetor para os produtos em estoque
-    PPProdutos produtos_novo = aloca_vetor();
-    if (produtos_novo) {
-        produtos = produtos_novo;
-        * tamanho = 0;
-        printf("\nDESTRUIU PRODUTOS \n");
-    }
-
-    historico = NULL;
-    free(historico);
-
-    // Aloca novo vetor para os pedidos no histórico
-    PPPedidos historico_novo = aloca_historico();
-    if (historico_novo) {
-        historico = historico_novo;
-        * tam_hist = 0;
-        printf("\nDESTRUIU HISTÓRICO \n");
-    }
-
-    printf("\nCONCLUÍDO \n");
-}
-
 #endif
