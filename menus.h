@@ -3,7 +3,6 @@
 
 #include "produtos.h"
 #include "pedidos.h"
-#include "historico.h"
 
 void menu_produtos(PPProdutos produtos, int *tamanho)
 {
@@ -97,13 +96,16 @@ void menu_produtos(PPProdutos produtos, int *tamanho)
 }
 
 
-void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, PPPedidos historico, int *tamanho, int *tam, int *tam_hist)
-{
-	int opcao, sair = 0, codigo;
-	PProdutos produto, pedido;
-
-	if(pedidos)
+void menu_pedidos(PPProdutos produtos, PPPedidos historico, int *tamanho, int *tam_hist)
+{			
+	//Aloca vetor para os produtos no pedido
+	PPProdutos pedidos = aloca_vetor();
+	
+	if (pedidos) 
 	{
+		int opcao, sair = 0, codigo, tam = 0;	
+		PProdutos produto, pedido;
+	
 		// Menu de pedidos
 		do
 		{
@@ -112,8 +114,7 @@ void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, PPPedidos historico, 
 			printf("\n(2) Consulta Pedidos");
 			printf("\n(3) Excluir Pedidos");
 			printf("\n(4) Alterar Pedidos");
-			printf("\n(5) Finalizar Pedidos");
-			printf("\n(6) Sair");
+			printf("\n(5) Sair / Finalizar Pedidos");;
 			printf("\n\nDigite uma opção: ");
 			scanf("%d", &opcao);
 	
@@ -132,73 +133,71 @@ void menu_pedidos(PPProdutos produtos, PPProdutos pedidos, PPPedidos historico, 
 				{
 					system("cls");
 					consultar_produtos(produto);
-					adicionar_pedidos(pedidos, produto, *tam);
-					*tam = *tam + 1;
+					adicionar_pedidos(pedidos, produto, tam);
+					tam = tam + 1;
 				}
 				
 				getch();
 				break;
 			case 2:
 				// Chama a função listar produtos e colsultar pedidos
-				listar_produtos(pedidos, *tam);
-
+				listar_produtos(pedidos, tam);
+	
 				printf("\nDigite o código do produto que deseja consultar no pedido: ");
 				scanf("%d", &codigo);
 				
 				// Busca o produto pelo código
-				pedido = get_produto(pedidos, codigo, *tam);
+				pedido = get_produto(pedidos, codigo, tam);
 				if (pedido)
 				{
 					// Busca posição no vetor
-					int posicao = get_posicao(pedidos, pedido, *tam);
+					int posicao = get_posicao(pedidos, pedido, tam);
 					consultar_pedidos(pedido, posicao);
 				}
 				
 				getch();
 				break;
 			case 3:
-			// Chama as funções de listar produtos,  repor pedidos e excluir produtos
-			listar_produtos(pedidos, *tam);
-
-			printf("\nDigite o código do produto que deseja excluir no pedido: ");
-			scanf("%d", &codigo);
-
-			// Busca o produto pelo código
-			produto = get_produto(produtos, codigo, *tamanho);
-			pedido = get_produto(pedidos, codigo, *tam);
-			if (produtos && pedido)
-			{
-				// Busca posição no vetor
-				int posicao = get_posicao(pedidos, pedido, *tam);
-				repor_pedidos(produto, pedido);
-				excluir_produtos(pedidos, posicao, *tam);
-				*tam = *tam - 1;
-			}
-			
-			getch();
-			break;
-			case 4:
-			// Chama as funções de listar e alterar pedidos
-			listar_produtos(pedidos, *tam);
-			printf("\nDigite o código do produto que deseja alterar no pedido: ");
-			scanf("%d", &codigo);
-
-			// Busca o produto pelo código
-			produto = get_produto(produtos, codigo, *tamanho);
-			pedido = get_produto(pedidos, codigo, *tam);
-			if (produto && pedido)
-				alterar_pedidos(produto, pedido);
-				
-			getch();
-			break;
-			case 5:
-				finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int *tam, int *tam_hist);
+				// Chama as funções de listar produtos,  repor pedidos e excluir produtos
+				listar_produtos(pedidos, tam);
+		
+				printf("\nDigite o código do produto que deseja excluir no pedido: ");
+				scanf("%d", &codigo);
+		
+				// Busca o produto pelo código
+				produto = get_produto(produtos, codigo, *tamanho);
+				pedido = get_produto(pedidos, codigo, tam);
+				if (produtos && pedido)
+				{
+					// Busca posição no vetor
+					int posicao = get_posicao(pedidos, pedido, tam);
+					repor_pedidos(produto, pedido);
+					excluir_produtos(pedidos, posicao, tam);
+					tam = tam - 1;
+				}
 				
 				getch();
-				sair = 1;
 				break;
-			case 6:
-				printf("\nSAIR \n");
+			case 4:
+				// Chama as funções de listar e alterar pedidos
+				listar_produtos(pedidos, tam);
+				printf("\nDigite o código do produto que deseja alterar no pedido: ");
+				scanf("%d", &codigo);
+		
+				// Busca o produto pelo código
+				produto = get_produto(produtos, codigo, *tamanho);
+				pedido = get_produto(pedidos, codigo, tam);
+				if (produto && pedido)
+					alterar_pedidos(produto, pedido);
+					
+				getch();
+				break;
+			case 5:
+				// Chama as função finalizar pedido
+				finalizar_pedidos(pedidos, historico, tam, *tam_hist);
+				*tam_hist = *tam_hist + 1;
+	
+				getch();
 				sair = 1;
 				break;
 			default:

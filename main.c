@@ -10,19 +10,16 @@ int main(int argc, char *argv[])
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	// Declaração de variáveis
-	int opcao, sair = 0, tamanho = 0, tam = 0, tam_hist;
+	// Declaração de variáveis globais
+	int opcao, sair = 0, tamanho = 0, tam_hist = 0;
 	
 	// Aloca vetor para os produtos em estoque
 	PPProdutos produtos = aloca_vetor();
 	
-	//Aloca vetor para os produtos no pedido
-	PPProdutos pedidos = aloca_vetor();
-	
 	// Aloca vetor para os pedidos no histórico
 	PPPedidos historico = aloca_historico();
 
-	if(produtos)
+	if (produtos && historico)
 	{		
 		// Carrega arquivo de texto no vetor de produtos
 		ler_arquivo(produtos, &tamanho);
@@ -49,12 +46,12 @@ int main(int argc, char *argv[])
 				break;
 			case 2:
 				// Chama o menu de pedidos
-				menu_pedidos(produtos, pedidos, historico, &tamanho, &tam, &tam_hist);
+				menu_pedidos(produtos, historico, &tamanho, &tam_hist);
 				getch();
 				break;
 			case 3:
 				// Chama o histórico
-				//ver_historico(historico, &tam_hist);
+				ver_historico(historico, tam_hist);
 				getch();
 				break;
 			case 5:

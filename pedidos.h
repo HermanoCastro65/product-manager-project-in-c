@@ -1,7 +1,37 @@
 #ifndef PEDIDOS_H
 #define PEDIDOS_H
 
-#include "historico.h"
+// Struct de pedidos
+typedef struct pedido
+{
+	int codigo;
+	PPProdutos pedidos;
+	int tam_pedidos;
+	float total;
+} Pedidos, *PPedidos, **PPPedidos;
+
+// Aloca o vetor de pedidos
+PPPedidos aloca_historico()
+{
+	PPPedidos pedidos = (PPPedidos)malloc(sizeof(PPedidos));
+	if (pedidos == NULL)
+	{
+		printf("\n\nMemória insuficiente\n\n");
+		exit(1);
+	}
+	return pedidos;
+}
+
+// Aloca struct de pedido
+void aloca_pedido(PPPedidos pedidos, int tam_hist)
+{
+	pedidos[tam_hist] = (PPedidos)malloc(sizeof(Pedidos));
+	if (pedidos[tam_hist] == NULL)
+	{
+		printf("\n\nMemória insuficiente\n\n");
+		exit(1);
+	}
+}
 
 // Função adicionar pedidos
 void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam)
@@ -56,6 +86,7 @@ void repor_pedidos(PProdutos produto, PProdutos pedido)
 	
 	printf("\nCONCLUÍDO \n");
 }
+
 // Função alterar pedidos
 void alterar_pedidos(PProdutos produto, PProdutos pedido)
 {
@@ -63,8 +94,8 @@ void alterar_pedidos(PProdutos produto, PProdutos pedido)
 	printf("\nALTERAR PEDIDOS: \n");
 	
 	int qtd;
-	printf("\n Código: %d", produto->codigo);
-	printf("Alterar a quantidade do produto no pedido: ");
+	printf("\nCódigo: %d", produto->codigo);
+	printf("\nAlterar a quantidade do produto no pedido: ");
 	scanf("%d", &qtd);
 	
 	if(qtd <= pedido->qtd_estoque + produto->qtd_estoque)
@@ -81,7 +112,8 @@ void alterar_pedidos(PProdutos produto, PProdutos pedido)
 	printf("\nCONCLUÍDO \n");
 }
 
-PPedidos finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam_hist)
+// Função finalizar pedidos
+void finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam_hist)
 {
 	system("cls");
 	printf("\nFINALIZAR PEDIDOS: \n");
@@ -93,13 +125,38 @@ PPedidos finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int
 	{
 		historico[tam_hist]->codigo = 100 + rand() % 900;
 		historico[tam_hist]->pedidos = pedidos;
-		historico[tam_hist]->total = 0;
-		
+		historico[tam_hist]->tam_pedidos = tam;
+		historico[tam_hist]->total = 0;		
 		int i;
 		for (i = 0; i < tam; i++)
-			historico[tam_hist]->total = historico[tam_hist]->total + (pedidos[tam]->preco * pedidos[tam]->qtd_estoque);
+			historico[tam_hist]->total =  historico[tam_hist]->total + (pedidos[i]->preco * pedidos[i]->qtd_estoque);
 	}
 
+	printf("\nCódigo do pedido: %d", historico[tam_hist]->codigo);
+	printf("\nTotal pago: R$ %.2f \n", historico[tam_hist]->total);	
+
+	printf("\nCONCLUÍDO \n");
+}
+
+// Função ver histórico
+void ver_historico(PPPedidos historico, int tam_hist)
+{
+	system("cls");
+	printf("\nVER HISTÓRICO: \n");
+	
+	int i;
+	for(i = 0; i < tam_hist; i++){
+		printf("\nCódigo do pedido: %d \n", historico[i]->codigo);
+		int j;
+		for (j = 0; j < historico[i]->tam_pedidos; j++)
+		{
+			printf("\nCódigo do produto: %d", historico[i]->pedidos[j]->codigo);
+			printf("\nDescrição: %s", historico[i]->pedidos[j]->descricao);
+			printf("\nPreço: R$ %.2f - Quantidade comprada: %d\n", historico[i]->pedidos[j]->preco, historico[i]->pedidos[j]->qtd_estoque);
+		}
+		printf("\nTotal pago: R$ %.2f \n\n", historico[i]->total);	
+	}
+	
 	printf("\nCONCLUÍDO \n");
 }
 
