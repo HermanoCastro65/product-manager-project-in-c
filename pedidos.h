@@ -33,15 +33,15 @@ void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam) {
     printf("\nInforme a quantidade que deseja adicionar: ");
     scanf("%d", & qtd);
 
-    if (qtd <= produto -> qtd_estoque) {
+    if (qtd <= produto -> qtd) {
         aloca_produto(pedidos, tam); // aloca novo vetor para os produtos em estoque
-		if(pedidos[tam]){
-	        pedidos[tam] -> codigo = produto -> codigo;
-	        strcpy(pedidos[tam] -> descricao, produto -> descricao);
-	        pedidos[tam] -> preco = produto -> preco;
-	        pedidos[tam] -> qtd_estoque = qtd;
-	        produto -> qtd_estoque = produto -> qtd_estoque - qtd;			
-		}
+        if (pedidos[tam]) {
+            pedidos[tam] -> codigo = produto -> codigo;
+            strcpy(pedidos[tam] -> descricao, produto -> descricao);
+            pedidos[tam] -> preco = produto -> preco;
+            pedidos[tam] -> qtd = qtd;
+            produto -> qtd = produto -> qtd - qtd;
+        }
     } else {
         system("cls");
         printf("\nQUANTIDADE FORA DE ESTOQUE \n");
@@ -58,14 +58,14 @@ void consultar_pedidos(PProdutos pedido, int posicao) {
     printf("\n Código do produto: %d", pedido -> codigo);
     printf("\n Descrição: %s", pedido -> descricao);
     printf("\n Preço: R$ %.2f", pedido -> preco);
-    printf("\n Quantidade da compra: %d\n", pedido -> qtd_estoque);
+    printf("\n Quantidade da compra: %d\n", pedido -> qtd);
 
     printf("\nCONCLUÍDO \n");
 }
 void repor_pedidos(PProdutos produto, PProdutos pedido) {
     printf("\nREPOR PEDIDOS: \n");
 
-    produto -> qtd_estoque = produto -> qtd_estoque + pedido -> qtd_estoque;
+    produto -> qtd = produto -> qtd + pedido -> qtd;
 
     printf("\nCONCLUÍDO \n");
 }
@@ -79,10 +79,10 @@ void alterar_pedidos(PProdutos produto, PProdutos pedido) {
     printf("\nAlterar a quantidade do produto no pedido: ");
     scanf("%d", & qtd);
 
-    if (qtd <= pedido -> qtd_estoque + produto -> qtd_estoque) {
-        produto -> qtd_estoque = produto -> qtd_estoque + pedido -> qtd_estoque;
-        pedido -> qtd_estoque = qtd;
-        produto -> qtd_estoque = produto -> qtd_estoque - qtd;
+    if (qtd <= pedido -> qtd + produto -> qtd) {
+        produto -> qtd = produto -> qtd + pedido -> qtd;
+        pedido -> qtd = qtd;
+        produto -> qtd = produto -> qtd - qtd;
     } else {
         system("cls");
         printf("\nQUANTIDADE FORA DE ESTOQUE \n");
@@ -104,7 +104,7 @@ void finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam
         historico[tam_hist] -> total = 0;
         int i;
         for (i = 0; i < tam; i++)
-            historico[tam_hist] -> total = historico[tam_hist] -> total + (pedidos[i] -> preco * pedidos[i] -> qtd_estoque);
+            historico[tam_hist] -> total = historico[tam_hist] -> total + (pedidos[i] -> preco * pedidos[i] -> qtd);
     }
 
     printf("\nCódigo do pedido: %d", historico[tam_hist] -> codigo);
@@ -117,14 +117,16 @@ void ver_historico(PPPedidos historico, int tam_hist) {
     system("cls");
     printf("\nVER HISTÓRICO: \n");
 
+    PPProdutos pedidos;
     int i;
     for (i = 0; i < tam_hist; i++) {
         printf("\nCódigo do pedido: %d \n", historico[i] -> codigo);
+        pedidos = historico[i] -> pedidos;
         int j;
         for (j = 0; j < historico[i] -> tam_pedidos; j++) {
-            printf("\nCódigo do produto: %d", historico[i] -> pedidos[j] -> codigo);
-            printf("\nDescrição: %s", historico[i] -> pedidos[j] -> descricao);
-            printf("\nPreço: R$ %.2f - Quantidade comprada: %d\n", historico[i] -> pedidos[j] -> preco, historico[i] -> pedidos[j] -> qtd_estoque);
+            printf("\nCódigo do produto: %d", pedidos[j] -> codigo);
+            printf("\nDescrição: %s", pedidos[j] -> descricao);
+            printf("\nPreço: R$ %.2f - Quantidade comprada: %d\n", pedidos[j] -> preco, pedidos[j] -> qtd);
         }
         printf("\nTotal pago: R$ %.2f \n\n", historico[i] -> total);
     }
@@ -135,8 +137,8 @@ void ver_historico(PPPedidos historico, int tam_hist) {
 void destruir_pedidos(PPPedidos historico, int * tam_hist) {
     historico = NULL;
     free(historico);
+    PPPedidos historico_novo = aloca_historico();
 
-    PPPedidos historico_novo = aloca_historico(); // aloca novo vetor para os pedidos no histórico
     if (historico_novo) {
         historico = historico_novo;
         * tam_hist = 0;

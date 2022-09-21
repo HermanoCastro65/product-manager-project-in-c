@@ -3,7 +3,7 @@
 
 typedef struct produto {
     char descricao[100];
-    int codigo, qtd_estoque;
+    int codigo, qtd;
     float preco;
 }
 Produtos, * PProdutos, ** PPProdutos;
@@ -56,7 +56,7 @@ void incluir_produtos(PPProdutos produtos, int tamanho) {
         printf("\nInforme a descrição do Produto: ");
         scanf(" %[^\n]", produtos[tamanho] -> descricao);
         printf("Informe a quantidade em estoque do Produto: ");
-        scanf("%d", & produtos[tamanho] -> qtd_estoque);
+        scanf("%d", & produtos[tamanho] -> qtd);
         printf("Informe o preço do Produto: ");
         scanf("%f", & produtos[tamanho] -> preco);
     }
@@ -72,7 +72,7 @@ void alterar_produtos(PProdutos produto) {
     printf("\nAlterar a descrição do Produto: ");
     scanf(" %[^\n]", produto -> descricao);
     printf("Alterar a quantidade em estoque do Produto: ");
-    scanf("%d", & produto -> qtd_estoque);
+    scanf("%d", & produto -> qtd);
     printf("Alterar o preço do Produto: ");
     scanf("%f", & produto -> preco);
 
@@ -100,7 +100,7 @@ void consultar_produtos(PProdutos produto) {
     printf("\n Código: %d", produto -> codigo);
     printf("\n Descrição: %s", produto -> descricao);
     printf("\n Preço: R$ %.2f", produto -> preco);
-    printf("\n Quantidade em Estoque: %d\n", produto -> qtd_estoque);
+    printf("\n Quantidade em Estoque: %d\n", produto -> qtd);
 
     printf("\nCONCLUÍDO \n");
 }
@@ -121,8 +121,8 @@ void listar_produtos(PPProdutos produtos, int tamanho) {
 void destruir_produtos(PPProdutos produtos, int * tamanho) {
     produtos = NULL;
     free(produtos);
+    PPProdutos produtos_novo = aloca_vetor();
 
-    PPProdutos produtos_novo = aloca_vetor(); // aloca novo vetor para os produtos em estoque
     if (produtos_novo) {
         produtos = produtos_novo;
         * tamanho = 0;

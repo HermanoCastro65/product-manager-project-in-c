@@ -8,16 +8,14 @@
 int main(int argc, char * argv[]) {
     setlocale(LC_ALL, "Portuguese");
 
-    // Declaração de variáveis globais
     int opcao, sair = 0, tamanho = 0, tam_hist = 0;
-    PPProdutos produtos = aloca_vetor(); // aloca vetor para os produtos em estoque
-    PPPedidos historico = aloca_historico(); // aloca vetor para os pedidos no histórico
+    PPProdutos produtos = aloca_vetor();
+    PPPedidos historico = aloca_historico();
 
     if (produtos && historico) {
-        ler_arquivo(produtos, & tamanho); // Carrega arquivo de texto no vetor de produtos
+        ler_arquivo(produtos, & tamanho);
         getchar();
 
-        // Menu principal
         do {
             system("cls");
             printf("\n(1) Menu Produtos");
@@ -42,7 +40,7 @@ int main(int argc, char * argv[]) {
                 getch();
                 break;
             case 4:
-            	system("cls");
+                system("cls");
                 destruir_produtos(produtos, & tamanho);
                 destruir_pedidos(historico, & tam_hist);
                 getch();

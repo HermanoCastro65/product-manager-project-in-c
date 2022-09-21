@@ -8,7 +8,6 @@ void menu_produtos(PPProdutos produtos, int * tamanho) {
     int opcao, sair = 0, codigo;
     PProdutos produto;
 
-    // Menu de produtos
     do {
         system("cls");
 
@@ -74,13 +73,12 @@ void menu_produtos(PPProdutos produtos, int * tamanho) {
 }
 
 void menu_pedidos(PPProdutos produtos, PPPedidos historico, int * tamanho, int * tam_hist) {
-    PPProdutos pedidos = aloca_vetor(); // aloca vetor para os produtos no pedido
+    PPProdutos pedidos = aloca_vetor();
 
     if (pedidos) {
         int opcao, sair = 0, codigo, tam = 0;
         PProdutos produto, pedido;
 
-        // Menu de pedidos
         do {
             system("cls");
             printf("\n(1) Adicionar Pedidos");
@@ -136,7 +134,7 @@ void menu_pedidos(PPProdutos produtos, PPPedidos historico, int * tamanho, int *
                 scanf("%d", & codigo);
                 produto = get_produto(produtos, codigo, * tamanho);
                 pedido = get_produto(pedidos, codigo, tam);
-                if (produto && pedido) 
+                if (produto && pedido)
                     alterar_pedidos(produto, pedido);
                 getch();
                 break;
