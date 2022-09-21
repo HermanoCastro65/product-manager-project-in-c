@@ -50,6 +50,11 @@ int main(int argc, char * argv[]) {
                 ver_historico(historico, tam_hist);
                 getch();
                 break;
+            case 4:
+                // Chama a função destruir
+                destruir(produtos, historico, &tamanho, &tam_hist);
+                getch();
+                break;
             case 5:
                 printf("\nSAIR \n");
                 sair = 1;
