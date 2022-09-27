@@ -29,7 +29,7 @@ void aloca_pedido(PPPedidos pedidos, int tam_hist) {
 void adicionar_pedidos(PPProdutos pedidos, PProdutos produto, int tam) {
     printf("\nADICIONAR PEDIDOS: \n");
 
-    int qtd;
+    int qtd = 0;
     printf("\nInforme a quantidade que deseja adicionar: ");
     scanf("%d", & qtd);
 
@@ -62,6 +62,7 @@ void consultar_pedidos(PProdutos pedido, int posicao) {
 
     printf("\nCONCLUÍDO \n");
 }
+
 void repor_pedidos(PProdutos produto, PProdutos pedido) {
     printf("\nREPOR PEDIDOS: \n");
 
@@ -74,7 +75,7 @@ void alterar_pedidos(PProdutos produto, PProdutos pedido) {
     system("cls");
     printf("\nALTERAR PEDIDOS: \n");
 
-    int qtd;
+    int qtd = 0;
     printf("\nCódigo: %d", produto -> codigo);
     printf("\nAlterar a quantidade do produto no pedido: ");
     scanf("%d", & qtd);
@@ -102,7 +103,7 @@ void finalizar_pedidos(PPProdutos pedidos, PPPedidos historico, int tam, int tam
         historico[tam_hist] -> pedidos = pedidos;
         historico[tam_hist] -> tam_pedidos = tam;
         historico[tam_hist] -> total = 0;
-        int i;
+        int i = 0;
         for (i = 0; i < tam; i++)
             historico[tam_hist] -> total = historico[tam_hist] -> total + (pedidos[i] -> preco * pedidos[i] -> qtd);
     }
@@ -117,8 +118,8 @@ void ver_historico(PPPedidos historico, int tam_hist) {
     system("cls");
     printf("\nVER HISTÓRICO: \n");
 
-    PPProdutos pedidos;
-    int i;
+    PPProdutos pedidos = NULL;
+    int i = 0;
     for (i = 0; i < tam_hist; i++) {
         printf("\nCódigo do pedido: %d \n", historico[i] -> codigo);
         pedidos = historico[i] -> pedidos;

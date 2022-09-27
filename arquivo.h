@@ -2,7 +2,7 @@
 #define ARQUIVO_H
 
 void ler_arquivo(PPProdutos produtos, int * tamanho) {
-    FILE * file;
+    FILE * file = NULL;
     file = fopen("arquivo.txt", "r");
 
     if (file == NULL) {
@@ -11,7 +11,7 @@ void ler_arquivo(PPProdutos produtos, int * tamanho) {
         exit(1);
     }
 
-    char buff[5];
+    char buff[5] = "buff";
     while (!feof(file)) {
         aloca_produto(produtos, * tamanho);
 

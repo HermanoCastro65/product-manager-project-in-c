@@ -5,8 +5,8 @@
 #include "pedidos.h"
 
 void menu_produtos(PPProdutos produtos, int * tamanho) {
-    int opcao, sair = 0, codigo;
-    PProdutos produto;
+    int opcao = 0, sair = 0, codigo = 0;
+    PProdutos produto = NULL;
 
     do {
         system("cls");
@@ -76,8 +76,8 @@ void menu_pedidos(PPProdutos produtos, PPPedidos historico, int * tamanho, int *
     PPProdutos pedidos = aloca_vetor();
 
     if (pedidos) {
-        int opcao, sair = 0, codigo, tam = 0;
-        PProdutos produto, pedido;
+        int opcao = 0, sair = 0, codigo = 0, tam = 0;
+        PProdutos produto = NULL, pedido = NULL;
 
         do {
             system("cls");

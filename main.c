@@ -8,7 +8,7 @@
 int main(int argc, char * argv[]) {
     setlocale(LC_ALL, "Portuguese");
 
-    int opcao, sair = 0, tamanho = 0, tam_hist = 0;
+    int opcao = 0, sair = 0, tamanho = 0, tam_hist = 0;
     PPProdutos produtos = aloca_vetor();
     PPPedidos historico = aloca_historico();
 

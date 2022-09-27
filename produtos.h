@@ -26,7 +26,7 @@ void aloca_produto(PPProdutos produtos, int tamanho) {
 }
 
 PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho) {
-    int i;
+    int i = 0;
     for (i = 0; i < tamanho; i++) {
         if (codigo == produtos[i] -> codigo)
             return produtos[i];
@@ -37,7 +37,7 @@ PProdutos get_produto(PPProdutos produtos, int codigo, int tamanho) {
 }
 
 int get_posicao(PPProdutos produtos, PProdutos produto, int tamanho) {
-    int i;
+    int i = 0;
     for (i = 0; i < tamanho; i++) {
         if (produto == produtos[i])
             return i;
@@ -83,7 +83,7 @@ void excluir_produtos(PPProdutos produtos, int posicao, int tamanho) {
     system("cls");
     printf("\nEXCLUIR PRODUTOS: \n");
 
-    int i;
+    int i = 0;
     for (i = posicao; i < tamanho; i++) {
         produtos[i] = produtos[i + 1];
     }
@@ -109,7 +109,7 @@ void listar_produtos(PPProdutos produtos, int tamanho) {
     system("cls");
     printf("\nLISTAR PRODUTOS: \n");
 
-    int i;
+    int i = 0;
     for (i = 0; i < tamanho; i++) {
         printf("\n Código: %d", produtos[i] -> codigo);
         printf("\n Descrição: %s \n", produtos[i] -> descricao);
