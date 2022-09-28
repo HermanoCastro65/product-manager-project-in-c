@@ -119,8 +119,11 @@ void listar_produtos(PPProdutos produtos, int tamanho) {
 }
 
 void destruir_produtos(PPProdutos produtos, int * tamanho) {
-    produtos = NULL;
+	int i = 0;
+    for (i = 0; i < * tamanho; i++)
+        free(produtos[i]);
     free(produtos);
+    produtos = NULL;
     PPProdutos produtos_novo = aloca_vetor();
 
     if (produtos_novo) {

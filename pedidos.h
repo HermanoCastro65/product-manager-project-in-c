@@ -136,8 +136,11 @@ void ver_historico(PPPedidos historico, int tam_hist) {
 }
 
 void destruir_pedidos(PPPedidos historico, int * tam_hist) {
-    historico = NULL;
+	int i = 0;
+	for (i = 0; i < * tam_hist; i++)
+		free(historico[i]);
     free(historico);
+    historico = NULL;
     PPPedidos historico_novo = aloca_historico();
 
     if (historico_novo) {
